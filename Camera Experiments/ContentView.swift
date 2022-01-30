@@ -8,9 +8,62 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var backgroundReplacer = BackgroundReplacer()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        HStack(alignment: .top) {
+            ZStack(alignment: .center) {
+                if let image = backgroundReplacer.ciImage {
+                    MetalView(ciImage: image)
+                } else {
+                    Text("No Image")
+                }
+            }
+            
+            VStack(alignment: .leading) {
+                VStack {
+                    HStack {
+                        Text("Red")
+                        Spacer()
+                        Text(backgroundReplacer.red.description)
+                    }
+                    Slider(value: backgroundReplacer.binding(\.red), in: 0...1)
+                    
+                    HStack {
+                        Text("Green")
+                        Spacer()
+                        Text(backgroundReplacer.green.description)
+                    }
+                    Slider(value: backgroundReplacer.binding(\.green), in: 0...1)
+                    
+                    HStack {
+                        Text("Blue")
+                        Spacer()
+                        Text(backgroundReplacer.blue.description)
+                    }
+                    Slider(value: backgroundReplacer.binding(\.blue), in: 0...1)
+                }
+                
+                HStack {
+                    Text("Blur Radius")
+                    Spacer()
+                    Text(backgroundReplacer.blurRadius.description)
+                }
+                Slider(value: backgroundReplacer.binding(\.blurRadius), in: 0...50)
+                
+                HStack {
+                    Text("Threshold")
+                    Spacer()
+                    Text(backgroundReplacer.threshold.description)
+                }
+                Slider(value: backgroundReplacer.binding(\.threshold), in: 0...1)
+                
+                Toggle("Inverted", isOn: backgroundReplacer.binding(\.inverted))
+            }
+            .frame(width: 200)
+            .padding([.leading, .trailing])
+        }
+        
     }
 }
 

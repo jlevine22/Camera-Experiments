@@ -7,19 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33221E3827A5B96E00DB8D63 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33221E3727A5B96E00DB8D63 /* MetalView.swift */; };
 		33675C23279E2163002E767F /* Camera_ExperimentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33675C22279E2163002E767F /* Camera_ExperimentsApp.swift */; };
 		33675C25279E2163002E767F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33675C24279E2163002E767F /* ContentView.swift */; };
 		33675C27279E2164002E767F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33675C26279E2164002E767F /* Assets.xcassets */; };
 		33675C2A279E2164002E767F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33675C29279E2164002E767F /* Preview Assets.xcassets */; };
+		33D8EBDE27A6462300D4D2AA /* BackgroundReplacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBDD27A6462300D4D2AA /* BackgroundReplacer.swift */; };
+		33D8EBE027A646CA00D4D2AA /* FilterGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBDF27A646CA00D4D2AA /* FilterGroup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		33221E3727A5B96E00DB8D63 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
 		33675C1F279E2163002E767F /* Camera Experiments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Camera Experiments.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33675C22279E2163002E767F /* Camera_ExperimentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera_ExperimentsApp.swift; sourceTree = "<group>"; };
 		33675C24279E2163002E767F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		33675C26279E2164002E767F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33675C29279E2164002E767F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		33675C2B279E2164002E767F /* Camera_Experiments.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Camera_Experiments.entitlements; sourceTree = "<group>"; };
+		33675C36279E30E4002E767F /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		33D8EBDD27A6462300D4D2AA /* BackgroundReplacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundReplacer.swift; sourceTree = "<group>"; };
+		33D8EBDF27A646CA00D4D2AA /* FilterGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterGroup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +45,7 @@
 			children = (
 				33675C21279E2163002E767F /* Camera Experiments */,
 				33675C20279E2163002E767F /* Products */,
+				33675C35279E30E4002E767F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,10 +60,13 @@
 		33675C21279E2163002E767F /* Camera Experiments */ = {
 			isa = PBXGroup;
 			children = (
+				33675C26279E2164002E767F /* Assets.xcassets */,
+				33D8EBDD27A6462300D4D2AA /* BackgroundReplacer.swift */,
+				33675C2B279E2164002E767F /* Camera_Experiments.entitlements */,
 				33675C22279E2163002E767F /* Camera_ExperimentsApp.swift */,
 				33675C24279E2163002E767F /* ContentView.swift */,
-				33675C26279E2164002E767F /* Assets.xcassets */,
-				33675C2B279E2164002E767F /* Camera_Experiments.entitlements */,
+				33D8EBDF27A646CA00D4D2AA /* FilterGroup.swift */,
+				33221E3727A5B96E00DB8D63 /* MetalView.swift */,
 				33675C28279E2164002E767F /* Preview Content */,
 			);
 			path = "Camera Experiments";
@@ -67,6 +78,14 @@
 				33675C29279E2164002E767F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		33675C35279E30E4002E767F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33675C36279E30E4002E767F /* CoreImage.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +158,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33D8EBDE27A6462300D4D2AA /* BackgroundReplacer.swift in Sources */,
+				33D8EBE027A646CA00D4D2AA /* FilterGroup.swift in Sources */,
 				33675C25279E2163002E767F /* ContentView.swift in Sources */,
 				33675C23279E2163002E767F /* Camera_ExperimentsApp.swift in Sources */,
+				33221E3827A5B96E00DB8D63 /* MetalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +298,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Do some machine learning stuff on the camera";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -303,6 +326,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Do some machine learning stuff on the camera";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
