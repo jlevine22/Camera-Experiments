@@ -14,7 +14,35 @@
 		33675C2A279E2164002E767F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33675C29279E2164002E767F /* Preview Assets.xcassets */; };
 		33D8EBDE27A6462300D4D2AA /* BackgroundReplacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBDD27A6462300D4D2AA /* BackgroundReplacer.swift */; };
 		33D8EBE027A646CA00D4D2AA /* FilterGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBDF27A646CA00D4D2AA /* FilterGroup.swift */; };
+		33D8EBE827A736CB00D4D2AA /* XPCServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBE727A736CB00D4D2AA /* XPCServiceManager.swift */; };
+		33D8EBEA27A737C100D4D2AA /* CameraExperimentsXPCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBE527A7351500D4D2AA /* CameraExperimentsXPCProtocol.swift */; };
+		33D8EC2827A799D400D4D2AA /* ServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBE427A734A700D4D2AA /* ServiceDelegate.swift */; };
+		33D8EC2927A799D400D4D2AA /* CameraExperimentsXPCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBE527A7351500D4D2AA /* CameraExperimentsXPCProtocol.swift */; };
+		33D8EC2A27A799D400D4D2AA /* CameraExperimentsXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBE627A7358400D4D2AA /* CameraExperimentsXPC.swift */; };
+		33D8EC2C27A79A5200D4D2AA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EC2B27A79A5200D4D2AA /* main.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		33D8EBFE27A75AF600D4D2AA /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed XPC Services";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33D8EC1E27A799C200D4D2AA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		33221E3727A5B96E00DB8D63 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
@@ -27,10 +55,25 @@
 		33675C36279E30E4002E767F /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		33D8EBDD27A6462300D4D2AA /* BackgroundReplacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundReplacer.swift; sourceTree = "<group>"; };
 		33D8EBDF27A646CA00D4D2AA /* FilterGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterGroup.swift; sourceTree = "<group>"; };
+		33D8EBE427A734A700D4D2AA /* ServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDelegate.swift; sourceTree = "<group>"; };
+		33D8EBE527A7351500D4D2AA /* CameraExperimentsXPCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraExperimentsXPCProtocol.swift; sourceTree = "<group>"; };
+		33D8EBE627A7358400D4D2AA /* CameraExperimentsXPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraExperimentsXPC.swift; sourceTree = "<group>"; };
+		33D8EBE727A736CB00D4D2AA /* XPCServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPCServiceManager.swift; sourceTree = "<group>"; };
+		33D8EC0327A790C700D4D2AA /* Camera-Experiments-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Camera-Experiments-Info.plist"; sourceTree = SOURCE_ROOT; };
+		33D8EC0427A7925200D4D2AA /* CameraExperimentsXPC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CameraExperimentsXPC.entitlements; sourceTree = "<group>"; };
+		33D8EC2027A799C200D4D2AA /* CameraExperimentsXPC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CameraExperimentsXPC; sourceTree = BUILT_PRODUCTS_DIR; };
+		33D8EC2B27A79A5200D4D2AA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		33675C1C279E2163002E767F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33D8EC1D27A799C200D4D2AA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -44,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				33675C21279E2163002E767F /* Camera Experiments */,
+				33D8EBF027A75AF600D4D2AA /* CameraExperimentsXPC */,
 				33675C20279E2163002E767F /* Products */,
 				33675C35279E30E4002E767F /* Frameworks */,
 			);
@@ -53,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				33675C1F279E2163002E767F /* Camera Experiments.app */,
+				33D8EC2027A799C200D4D2AA /* CameraExperimentsXPC */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,6 +105,7 @@
 		33675C21279E2163002E767F /* Camera Experiments */ = {
 			isa = PBXGroup;
 			children = (
+				33D8EC0327A790C700D4D2AA /* Camera-Experiments-Info.plist */,
 				33675C26279E2164002E767F /* Assets.xcassets */,
 				33D8EBDD27A6462300D4D2AA /* BackgroundReplacer.swift */,
 				33675C2B279E2164002E767F /* Camera_Experiments.entitlements */,
@@ -68,6 +114,7 @@
 				33D8EBDF27A646CA00D4D2AA /* FilterGroup.swift */,
 				33221E3727A5B96E00DB8D63 /* MetalView.swift */,
 				33675C28279E2164002E767F /* Preview Content */,
+				33D8EBE727A736CB00D4D2AA /* XPCServiceManager.swift */,
 			);
 			path = "Camera Experiments";
 			sourceTree = "<group>";
@@ -88,6 +135,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		33D8EBF027A75AF600D4D2AA /* CameraExperimentsXPC */ = {
+			isa = PBXGroup;
+			children = (
+				33D8EC0427A7925200D4D2AA /* CameraExperimentsXPC.entitlements */,
+				33D8EBE427A734A700D4D2AA /* ServiceDelegate.swift */,
+				33D8EBE527A7351500D4D2AA /* CameraExperimentsXPCProtocol.swift */,
+				33D8EBE627A7358400D4D2AA /* CameraExperimentsXPC.swift */,
+				33D8EC2B27A79A5200D4D2AA /* main.swift */,
+			);
+			path = CameraExperimentsXPC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -98,6 +157,7 @@
 				33675C1B279E2163002E767F /* Sources */,
 				33675C1C279E2163002E767F /* Frameworks */,
 				33675C1D279E2163002E767F /* Resources */,
+				33D8EBFE27A75AF600D4D2AA /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
@@ -107,6 +167,23 @@
 			productName = "Camera Experiments";
 			productReference = 33675C1F279E2163002E767F /* Camera Experiments.app */;
 			productType = "com.apple.product-type.application";
+		};
+		33D8EC1F27A799C200D4D2AA /* CameraExperimentsXPC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33D8EC2427A799C200D4D2AA /* Build configuration list for PBXNativeTarget "CameraExperimentsXPC" */;
+			buildPhases = (
+				33D8EC1C27A799C200D4D2AA /* Sources */,
+				33D8EC1D27A799C200D4D2AA /* Frameworks */,
+				33D8EC1E27A799C200D4D2AA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CameraExperimentsXPC;
+			productName = CameraExperimentsXPC;
+			productReference = 33D8EC2027A799C200D4D2AA /* CameraExperimentsXPC */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -119,6 +196,9 @@
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					33675C1E279E2163002E767F = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					33D8EC1F27A799C200D4D2AA = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
@@ -137,6 +217,7 @@
 			projectRoot = "";
 			targets = (
 				33675C1E279E2163002E767F /* Camera Experiments */,
+				33D8EC1F27A799C200D4D2AA /* CameraExperimentsXPC */,
 			);
 		};
 /* End PBXProject section */
@@ -159,10 +240,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				33D8EBDE27A6462300D4D2AA /* BackgroundReplacer.swift in Sources */,
+				33D8EBE827A736CB00D4D2AA /* XPCServiceManager.swift in Sources */,
 				33D8EBE027A646CA00D4D2AA /* FilterGroup.swift in Sources */,
+				33D8EBEA27A737C100D4D2AA /* CameraExperimentsXPCProtocol.swift in Sources */,
 				33675C25279E2163002E767F /* ContentView.swift in Sources */,
 				33675C23279E2163002E767F /* Camera_ExperimentsApp.swift in Sources */,
 				33221E3827A5B96E00DB8D63 /* MetalView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33D8EC1C27A799C200D4D2AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33D8EC2827A799D400D4D2AA /* ServiceDelegate.swift in Sources */,
+				33D8EC2927A799D400D4D2AA /* CameraExperimentsXPCProtocol.swift in Sources */,
+				33D8EC2C27A79A5200D4D2AA /* main.swift in Sources */,
+				33D8EC2A27A799D400D4D2AA /* CameraExperimentsXPC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,9 +381,11 @@
 		33675C2F279E2164002E767F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Camera Experiments/Camera_Experiments.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -298,6 +394,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Camera-Experiments-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Do some machine learning stuff on the camera";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -305,7 +402,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Josh-Levine.Camera-Experiments";
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshlevine.CameraExperiements;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -315,9 +412,11 @@
 		33675C30279E2164002E767F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Camera Experiments/Camera_Experiments.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -326,6 +425,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Camera-Experiments-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Do some machine learning stuff on the camera";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -333,9 +433,32 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Josh-Levine.Camera-Experiments";
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshlevine.CameraExperiements;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		33D8EC2527A799C200D4D2AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J353EV7GXF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		33D8EC2627A799C200D4D2AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J353EV7GXF;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -357,6 +480,15 @@
 			buildConfigurations = (
 				33675C2F279E2164002E767F /* Debug */,
 				33675C30279E2164002E767F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33D8EC2427A799C200D4D2AA /* Build configuration list for PBXNativeTarget "CameraExperimentsXPC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33D8EC2527A799C200D4D2AA /* Debug */,
+				33D8EC2627A799C200D4D2AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -11,6 +11,7 @@ import Vision
 import CoreImage
 import CoreImage.CIFilterBuiltins
 import AVFoundation
+import Combine
 
 class BackgroundReplacer: NSObject, ObservableObject {
     private let requestHandler = VNSequenceRequestHandler()
@@ -18,7 +19,17 @@ class BackgroundReplacer: NSObject, ObservableObject {
     private var segmentationRequest = VNGeneratePersonSegmentationRequest()
     
     public var session: AVCaptureSession?
+    
+    private lazy var serviceManager = XPCServiceManager()
+    var xpc: CameraExperimentsXPCProtocol {
+        serviceManager.service
+    }
+    
+    private lazy var context = CIContext()
 
+    private var subscriptions = Set<AnyCancellable>()
+    
+    @Published var pixelBuffer: CVPixelBuffer?
     @Published var ciImage: CIImage?
     @Published var red: Double = 0.01
     @Published var green: Double = 0.01
@@ -93,6 +104,15 @@ class BackgroundReplacer: NSObject, ObservableObject {
             "inputGVector": CIVector(x: 0, y: 0, z: 0, w: green),
             "inputBVector": CIVector(x: 0, y: 0, z: 0, w: blue)
         ]
+        
+        serviceManager.service.getRGB(withReply: { rgb in
+            DispatchQueue.main.async { [weak self] in
+                self?.red = Double(rgb[0])/255
+                self?.green = Double(rgb[1])/255
+                self?.blue = Double(rgb[2])/255
+            }
+        })
+        
         let backgroundImage = maskImage.applyingFilter("CIColorMatrix",
                                                        parameters: vectors)
         
@@ -126,6 +146,18 @@ class BackgroundReplacer: NSObject, ObservableObject {
         let blendedImage = blendFilter.outputImage
         
         guard let image = blendedImage else { return }
+        
+        
+        
+        var newPixelBuffer: CVPixelBuffer?
+        let attributes = [
+            kCVPixelBufferCGImageCompatibilityKey: true,
+            kCVPixelBufferCGBitmapContextCompatibilityKey: true
+        ] as CFDictionary
+        CVPixelBufferCreate(kCFAllocatorDefault, 1920, 1080, kCVPixelFormatType_32ARGB, attributes, &newPixelBuffer)
+        context.render(image, to: newPixelBuffer!)
+        serviceManager.publishFrame(newPixelBuffer!)
+        
         DispatchQueue.main.async { [weak self] in
             self?.ciImage = image
         }
