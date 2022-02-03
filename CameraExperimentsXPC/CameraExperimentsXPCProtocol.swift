@@ -9,7 +9,6 @@ import Foundation
 import CoreImage
 
 @objc(CameraExperimentsXPCProtocol) protocol CameraExperimentsXPCProtocol {
-    func getPublicIp(withReply reply: @escaping (String) -> Void)
     func getRGB(withReply reply: @escaping ([Int]) -> Void)
     func setFrame(_ surface: IOSurface)
     func getFrame(withReply reply: @escaping(IOSurface?) -> Void)

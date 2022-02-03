@@ -12,6 +12,18 @@
 		33675C25279E2163002E767F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33675C24279E2163002E767F /* ContentView.swift */; };
 		33675C27279E2164002E767F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33675C26279E2164002E767F /* Assets.xcassets */; };
 		33675C2A279E2164002E767F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33675C29279E2164002E767F /* Preview Assets.xcassets */; };
+		33AE989927AB94B4004B7417 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33675C36279E30E4002E767F /* CoreImage.framework */; platformFilter = maccatalyst; };
+		33AE989B27AB94BD004B7417 /* CoreMediaIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AE989A27AB94BD004B7417 /* CoreMediaIO.framework */; platformFilter = maccatalyst; };
+		33AE98A827AB955E004B7417 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE989E27AB955E004B7417 /* Main.swift */; };
+		33AE98A927AB955E004B7417 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE989F27AB955E004B7417 /* Device.swift */; };
+		33AE98AA27AB955E004B7417 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE98A027AB955E004B7417 /* Log.swift */; };
+		33AE98AB27AB955E004B7417 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE98A127AB955E004B7417 /* Object.swift */; };
+		33AE98AC27AB955E004B7417 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE98A227AB955E004B7417 /* Property.swift */; };
+		33AE98AD27AB955E004B7417 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33AE98A327AB955E004B7417 /* Info.plist */; };
+		33AE98AE27AB955E004B7417 /* PluginInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE98A427AB955E004B7417 /* PluginInterface.swift */; };
+		33AE98AF27AB955E004B7417 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE98A627AB955E004B7417 /* Stream.swift */; };
+		33AE98B027AB955E004B7417 /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AE98A727AB955E004B7417 /* Plugin.swift */; };
+		33AE98B127AB960D004B7417 /* CameraExperimentsXPCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBE527A7351500D4D2AA /* CameraExperimentsXPCProtocol.swift */; };
 		33D8EBDE27A6462300D4D2AA /* BackgroundReplacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBDD27A6462300D4D2AA /* BackgroundReplacer.swift */; };
 		33D8EBE027A646CA00D4D2AA /* FilterGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBDF27A646CA00D4D2AA /* FilterGroup.swift */; };
 		33D8EBE827A736CB00D4D2AA /* XPCServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D8EBE727A736CB00D4D2AA /* XPCServiceManager.swift */; };
@@ -53,6 +65,18 @@
 		33675C29279E2164002E767F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		33675C2B279E2164002E767F /* Camera_Experiments.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Camera_Experiments.entitlements; sourceTree = "<group>"; };
 		33675C36279E30E4002E767F /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		33AE989527AB9499004B7417 /* CameraExperimentsDAL.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CameraExperimentsDAL.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		33AE989A27AB94BD004B7417 /* CoreMediaIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMediaIO.framework; path = System/Library/Frameworks/CoreMediaIO.framework; sourceTree = SDKROOT; };
+		33AE989D27AB955D004B7417 /* CameraExperimentsDAL-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CameraExperimentsDAL-Bridging-Header.h"; sourceTree = "<group>"; };
+		33AE989E27AB955E004B7417 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		33AE989F27AB955E004B7417 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		33AE98A027AB955E004B7417 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		33AE98A127AB955E004B7417 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		33AE98A227AB955E004B7417 /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		33AE98A327AB955E004B7417 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33AE98A427AB955E004B7417 /* PluginInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginInterface.swift; sourceTree = "<group>"; };
+		33AE98A627AB955E004B7417 /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
+		33AE98A727AB955E004B7417 /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
 		33D8EBDD27A6462300D4D2AA /* BackgroundReplacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundReplacer.swift; sourceTree = "<group>"; };
 		33D8EBDF27A646CA00D4D2AA /* FilterGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterGroup.swift; sourceTree = "<group>"; };
 		33D8EBE427A734A700D4D2AA /* ServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +97,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33AE989227AB9499004B7417 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33AE989B27AB94BD004B7417 /* CoreMediaIO.framework in Frameworks */,
+				33AE989927AB94B4004B7417 /* CoreImage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33D8EC1D27A799C200D4D2AA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -87,9 +120,10 @@
 			isa = PBXGroup;
 			children = (
 				33675C21279E2163002E767F /* Camera Experiments */,
+				33AE989C27AB94C7004B7417 /* CameraExperimentsDAL */,
 				33D8EBF027A75AF600D4D2AA /* CameraExperimentsXPC */,
-				33675C20279E2163002E767F /* Products */,
 				33675C35279E30E4002E767F /* Frameworks */,
+				33675C20279E2163002E767F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,6 +132,7 @@
 			children = (
 				33675C1F279E2163002E767F /* Camera Experiments.app */,
 				33D8EC2027A799C200D4D2AA /* CameraExperimentsXPC */,
+				33AE989527AB9499004B7417 /* CameraExperimentsDAL.plugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,9 +165,27 @@
 		33675C35279E30E4002E767F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				33AE989A27AB94BD004B7417 /* CoreMediaIO.framework */,
 				33675C36279E30E4002E767F /* CoreImage.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33AE989C27AB94C7004B7417 /* CameraExperimentsDAL */ = {
+			isa = PBXGroup;
+			children = (
+				33AE989F27AB955E004B7417 /* Device.swift */,
+				33AE98A327AB955E004B7417 /* Info.plist */,
+				33AE98A027AB955E004B7417 /* Log.swift */,
+				33AE989E27AB955E004B7417 /* Main.swift */,
+				33AE98A127AB955E004B7417 /* Object.swift */,
+				33AE98A727AB955E004B7417 /* Plugin.swift */,
+				33AE98A427AB955E004B7417 /* PluginInterface.swift */,
+				33AE98A227AB955E004B7417 /* Property.swift */,
+				33AE98A627AB955E004B7417 /* Stream.swift */,
+				33AE989D27AB955D004B7417 /* CameraExperimentsDAL-Bridging-Header.h */,
+			);
+			path = CameraExperimentsDAL;
 			sourceTree = "<group>";
 		};
 		33D8EBF027A75AF600D4D2AA /* CameraExperimentsXPC */ = {
@@ -168,6 +221,23 @@
 			productReference = 33675C1F279E2163002E767F /* Camera Experiments.app */;
 			productType = "com.apple.product-type.application";
 		};
+		33AE989427AB9499004B7417 /* CameraExperimentsDAL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33AE989827AB9499004B7417 /* Build configuration list for PBXNativeTarget "CameraExperimentsDAL" */;
+			buildPhases = (
+				33AE989127AB9499004B7417 /* Sources */,
+				33AE989227AB9499004B7417 /* Frameworks */,
+				33AE989327AB9499004B7417 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CameraExperimentsDAL;
+			productName = CameraExperimentsDAL;
+			productReference = 33AE989527AB9499004B7417 /* CameraExperimentsDAL.plugin */;
+			productType = "com.apple.product-type.bundle";
+		};
 		33D8EC1F27A799C200D4D2AA /* CameraExperimentsXPC */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 33D8EC2427A799C200D4D2AA /* Build configuration list for PBXNativeTarget "CameraExperimentsXPC" */;
@@ -198,6 +268,10 @@
 					33675C1E279E2163002E767F = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
+					33AE989427AB9499004B7417 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
 					33D8EC1F27A799C200D4D2AA = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -218,6 +292,7 @@
 			targets = (
 				33675C1E279E2163002E767F /* Camera Experiments */,
 				33D8EC1F27A799C200D4D2AA /* CameraExperimentsXPC */,
+				33AE989427AB9499004B7417 /* CameraExperimentsDAL */,
 			);
 		};
 /* End PBXProject section */
@@ -229,6 +304,14 @@
 			files = (
 				33675C2A279E2164002E767F /* Preview Assets.xcassets in Resources */,
 				33675C27279E2164002E767F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33AE989327AB9499004B7417 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33AE98AD27AB955E004B7417 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +329,22 @@
 				33675C25279E2163002E767F /* ContentView.swift in Sources */,
 				33675C23279E2163002E767F /* Camera_ExperimentsApp.swift in Sources */,
 				33221E3827A5B96E00DB8D63 /* MetalView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33AE989127AB9499004B7417 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33AE98AE27AB955E004B7417 /* PluginInterface.swift in Sources */,
+				33AE98AC27AB955E004B7417 /* Property.swift in Sources */,
+				33AE98A827AB955E004B7417 /* Main.swift in Sources */,
+				33AE98A927AB955E004B7417 /* Device.swift in Sources */,
+				33AE98AB27AB955E004B7417 /* Object.swift in Sources */,
+				33AE98AA27AB955E004B7417 /* Log.swift in Sources */,
+				33AE98B027AB955E004B7417 /* Plugin.swift in Sources */,
+				33AE98AF27AB955E004B7417 /* Stream.swift in Sources */,
+				33AE98B127AB960D004B7417 /* CameraExperimentsXPCProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +539,69 @@
 			};
 			name = Release;
 		};
+		33AE989627AB9499004B7417 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J353EV7GXF;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CameraExperimentsDAL/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshlevine.CameraExperimentsDAL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CameraExperimentsDAL/CameraExperimentsDAL-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WRAPPER_EXTENSION = plugin;
+			};
+			name = Debug;
+		};
+		33AE989727AB9499004B7417 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J353EV7GXF;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CameraExperimentsDAL/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshlevine.CameraExperimentsDAL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CameraExperimentsDAL/CameraExperimentsDAL-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				WRAPPER_EXTENSION = plugin;
+			};
+			name = Release;
+		};
 		33D8EC2527A799C200D4D2AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -480,6 +642,15 @@
 			buildConfigurations = (
 				33675C2F279E2164002E767F /* Debug */,
 				33675C30279E2164002E767F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33AE989827AB9499004B7417 /* Build configuration list for PBXNativeTarget "CameraExperimentsDAL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33AE989627AB9499004B7417 /* Debug */,
+				33AE989727AB9499004B7417 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

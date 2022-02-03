@@ -21,21 +21,18 @@ class BackgroundReplacer: NSObject, ObservableObject {
     public var session: AVCaptureSession?
     
     private lazy var serviceManager = XPCServiceManager()
-    var xpc: CameraExperimentsXPCProtocol {
-        serviceManager.service
-    }
     
     private lazy var context = CIContext()
 
     private var subscriptions = Set<AnyCancellable>()
-    
-    @Published var pixelBuffer: CVPixelBuffer?
+
     @Published var ciImage: CIImage?
     @Published var red: Double = 0.01
     @Published var green: Double = 0.01
     @Published var blue: Double = 0.01
-    @Published var blurRadius: Double = 4
-    @Published var threshold: Double = 0.5
+    @Published var autoColors: Bool = false
+    @Published var blurRadius: Double = 5.5
+    @Published var threshold: Double = 0.25
     @Published var inverted: Bool = false
 
     override init() {
@@ -105,13 +102,15 @@ class BackgroundReplacer: NSObject, ObservableObject {
             "inputBVector": CIVector(x: 0, y: 0, z: 0, w: blue)
         ]
         
-        serviceManager.service.getRGB(withReply: { rgb in
-            DispatchQueue.main.async { [weak self] in
-                self?.red = Double(rgb[0])/255
-                self?.green = Double(rgb[1])/255
-                self?.blue = Double(rgb[2])/255
-            }
-        })
+        if autoColors {
+            serviceManager.service.getRGB(withReply: { rgb in
+                DispatchQueue.main.async { [weak self] in
+                    self?.red = Double(rgb[0])/255
+                    self?.green = Double(rgb[1])/255
+                    self?.blue = Double(rgb[2])/255
+                }
+            })
+        }
         
         let backgroundImage = maskImage.applyingFilter("CIColorMatrix",
                                                        parameters: vectors)
@@ -146,8 +145,6 @@ class BackgroundReplacer: NSObject, ObservableObject {
         let blendedImage = blendFilter.outputImage
         
         guard let image = blendedImage else { return }
-        
-        
         
         var newPixelBuffer: CVPixelBuffer?
         let attributes = [
