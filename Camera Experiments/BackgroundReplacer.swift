@@ -34,6 +34,33 @@ class BackgroundReplacer: NSObject, ObservableObject {
     @Published var blurRadius: Double = 5.5
     @Published var threshold: Double = 0.25
     @Published var inverted: Bool = false
+    
+    @Published var devices: [AVCaptureDevice] = []
+    @Published var selectedDeviceId: String? = nil {
+        didSet {
+            print(selectedDeviceId)
+            session?.beginConfiguration()
+            session?.inputs.forEach(session!.removeInput)
+            guard let device = selectedDevice else {
+                //fatalError("Error getting AVCaptureDevice.")
+                return
+            }
+            print("setting up input with device \(device.localizedName)")
+            guard let input = try? AVCaptureDeviceInput(device: device) else {
+                fatalError("Error getting AVCaptureDeviceInput")
+            }
+            
+            session?.addInput(input)
+            session?.commitConfiguration()
+        }
+    }
+    
+    var selectedDevice: AVCaptureDevice? {
+        guard let selectedDeviceId = selectedDeviceId else {
+            return nil
+        }
+        return devices.first { $0.uniqueID == selectedDeviceId }
+    }
 
     override init() {
         super.init()
@@ -42,34 +69,43 @@ class BackgroundReplacer: NSObject, ObservableObject {
         segmentationRequest.qualityLevel = .balanced
         segmentationRequest.outputPixelFormat = kCVPixelFormatType_OneComponent8
         
-        setupCaptureSession()
+        DispatchQueue.main.async { [weak self] in
+            self?.setupCaptureSession()
+            self?.updateDevices()
+        }
     }
     
     deinit {
         session?.stopRunning()
     }
     
+    func updateDevices() {
+        let deviceTypes = [AVCaptureDevice.DeviceType.builtInWideAngleCamera, .externalUnknown]
+        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: deviceTypes, mediaType: .video, position: .unspecified)
+        devices = discoverySession.devices
+        devices.forEach {
+            print($0.hashValue, $0.uniqueID)
+        }
+        if let selectedDeviceId = selectedDeviceId, devices.contains(where: { $0.uniqueID == selectedDeviceId }) == false {
+            self.selectedDeviceId = nil
+        }
+        if selectedDevice == nil {
+            selectedDeviceId = devices.first?.uniqueID
+        }
+    }
+    
     func setupCaptureSession() {
-        guard let device = AVCaptureDevice.default(for: .video) else {
-            fatalError("Error getting AVCaptureDevice.")
-        }
-        guard let input = try? AVCaptureDeviceInput(device: device) else {
-            fatalError("Error getting AVCaptureDeviceInput")
-        }
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
-            self.session = AVCaptureSession()
-            self.session?.sessionPreset = .high
-            self.session?.addInput(input)
-            
-            let output = AVCaptureVideoDataOutput()
-            output.alwaysDiscardsLateVideoFrames = true
-            output.setSampleBufferDelegate(self, queue: .main)
-            
-            self.session?.addOutput(output)
-            output.connections.first?.videoOrientation = .portrait
-            self.session?.startRunning()
-        }
+        self.session = AVCaptureSession()
+        self.session?.sessionPreset = .high
+        
+        let output = AVCaptureVideoDataOutput()
+        output.alwaysDiscardsLateVideoFrames = true
+        output.setSampleBufferDelegate(self, queue: .main)
+        
+        self.session?.addOutput(output)
+        output.connections.first?.videoOrientation = .portrait
+        
+        session?.startRunning()
     }
     
     private func processVideoFrame(_ framePixelBuffer: CVPixelBuffer) {

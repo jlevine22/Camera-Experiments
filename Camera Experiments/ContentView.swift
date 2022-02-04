@@ -35,7 +35,41 @@ struct ContentView: View {
             
             Toggle("Auto Colors", isOn: backgroundReplacer.binding(\.autoColors))
         }
-        .padding([.top, .bottom])
+    }
+    
+    var camera: some View {
+        VStack {
+            Text("Camera")
+            Menu {
+                ForEach(backgroundReplacer.devices, id: \.uniqueID) { device in
+                    Button(device.localizedName) {
+                        backgroundReplacer.selectedDeviceId = device.uniqueID
+                    }
+                }
+            } label: {
+                Text(backgroundReplacer.selectedDevice?.localizedName ?? "No device selected.")
+            }
+        }
+    }
+    
+    var masking: some View {
+        VStack {
+            HStack {
+                Text("Blur Radius")
+                Spacer()
+                Text(backgroundReplacer.blurRadius.description)
+            }
+            Slider(value: backgroundReplacer.binding(\.blurRadius), in: 0...50)
+            
+            HStack {
+                Text("Threshold")
+                Spacer()
+                Text(backgroundReplacer.threshold.description)
+            }
+            Slider(value: backgroundReplacer.binding(\.threshold), in: 0...1)
+            
+            Toggle("Inverted", isOn: backgroundReplacer.binding(\.inverted))
+        }
     }
     
     var body: some View {
@@ -48,27 +82,15 @@ struct ContentView: View {
                 }
             }
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 12) {
+                camera
+                
                 colors
                 
-                HStack {
-                    Text("Blur Radius")
-                    Spacer()
-                    Text(backgroundReplacer.blurRadius.description)
-                }
-                Slider(value: backgroundReplacer.binding(\.blurRadius), in: 0...50)
-                
-                HStack {
-                    Text("Threshold")
-                    Spacer()
-                    Text(backgroundReplacer.threshold.description)
-                }
-                Slider(value: backgroundReplacer.binding(\.threshold), in: 0...1)
-                
-                Toggle("Inverted", isOn: backgroundReplacer.binding(\.inverted))
+                masking
             }
             .frame(width: 200)
-            .padding([.leading, .trailing])
+            .padding()
         }
         
     }
