@@ -18,6 +18,25 @@ class BackgroundReplacer: NSObject, ObservableObject {
     private var facePoseRequest: VNDetectFaceRectanglesRequest!
     private var segmentationRequest = VNGeneratePersonSegmentationRequest()
     
+    private lazy var player = AVPlayer()
+    lazy var videoDataOutput = AVPlayerItemVideoOutput(outputSettings: [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)])
+    private var itemObserver: NSKeyValueObservation?
+    
+    private var item: AVPlayerItem? {
+        didSet {
+            backgroundPixelBuffer = nil
+            itemObserver?.invalidate()
+            player.replaceCurrentItem(with: item)
+            player.currentItem?.add(videoDataOutput)
+            guard item != nil else { return }
+            itemObserver = player.currentItem?.observe(\.status, options: [.initial, .new]) { [player] item, _ in
+                if item.status == .readyToPlay {
+                    player.play()
+                }
+            }
+        }
+    }
+    
     public var session: AVCaptureSession?
     
     private lazy var serviceManager = XPCServiceManager()
@@ -26,26 +45,26 @@ class BackgroundReplacer: NSObject, ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
 
+    private var backgroundPixelBuffer: CVPixelBuffer?
+    
     @Published var ciImage: CIImage?
     @Published var red: Double = 0.01
     @Published var green: Double = 0.01
     @Published var blue: Double = 0.01
     @Published var autoColors: Bool = false
-    @Published var blurRadius: Double = 5.5
-    @Published var threshold: Double = 0.25
+    @Published var blurRadius: Double = 2.2
+    @Published var threshold: Double = 0.42
     @Published var inverted: Bool = false
     
     @Published var devices: [AVCaptureDevice] = []
     @Published var selectedDeviceId: String? = nil {
         didSet {
-            print(selectedDeviceId)
             session?.beginConfiguration()
             session?.inputs.forEach(session!.removeInput)
             guard let device = selectedDevice else {
                 //fatalError("Error getting AVCaptureDevice.")
                 return
             }
-            print("setting up input with device \(device.localizedName)")
             guard let input = try? AVCaptureDeviceInput(device: device) else {
                 fatalError("Error getting AVCaptureDeviceInput")
             }
@@ -77,15 +96,17 @@ class BackgroundReplacer: NSObject, ObservableObject {
     
     deinit {
         session?.stopRunning()
+        itemObserver?.invalidate()
+    }
+    
+    func setBackgroundUrl(_ url: URL?) {
+        self.item = url == nil ? nil : AVPlayerItem(url: url!)
     }
     
     func updateDevices() {
         let deviceTypes = [AVCaptureDevice.DeviceType.builtInWideAngleCamera, .externalUnknown]
         let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: deviceTypes, mediaType: .video, position: .unspecified)
         devices = discoverySession.devices
-        devices.forEach {
-            print($0.hashValue, $0.uniqueID)
-        }
         if let selectedDeviceId = selectedDeviceId, devices.contains(where: { $0.uniqueID == selectedDeviceId }) == false {
             self.selectedDeviceId = nil
         }
@@ -148,8 +169,9 @@ class BackgroundReplacer: NSObject, ObservableObject {
             })
         }
         
-        let backgroundImage = maskImage.applyingFilter("CIColorMatrix",
-                                                       parameters: vectors)
+        let backgroundImage = backgroundPixelBuffer == nil ?
+                                maskImage.applyingFilter("CIColorMatrix", parameters: vectors) :
+                                CIImage(cvPixelBuffer: backgroundPixelBuffer!)
         
         let maskFilters = FilterGroup()
         
@@ -172,11 +194,13 @@ class BackgroundReplacer: NSObject, ObservableObject {
             median.inputImage = input
             return median
         }
+        
+        let processedMask = maskFilters.outputImage(startImage: maskImage.clampedToExtent())
 
         let blendFilter = CIFilter.blendWithMask()
         blendFilter.inputImage = inverted ? backgroundImage : originalImage
         blendFilter.backgroundImage = inverted ? originalImage : backgroundImage
-        blendFilter.maskImage = maskFilters.outputImage(startImage: maskImage)
+        blendFilter.maskImage = processedMask
         
         let blendedImage = blendFilter.outputImage
         
@@ -209,6 +233,11 @@ extension BackgroundReplacer: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         // Grab the pixelbuffer frame from the camera output
         guard let pixelBuffer = sampleBuffer.imageBuffer else { return }
+        let currentTime = player.currentTime()
+        let hasNewPixelBuffer = videoDataOutput.hasNewPixelBuffer(forItemTime: currentTime)
+        if hasNewPixelBuffer, let pixelBuffer = videoDataOutput.copyPixelBuffer(forItemTime: currentTime, itemTimeForDisplay: nil) {
+            self.backgroundPixelBuffer = pixelBuffer
+        }
         DispatchQueue.global().async { [weak self] in
             self?.processVideoFrame(pixelBuffer)
         }

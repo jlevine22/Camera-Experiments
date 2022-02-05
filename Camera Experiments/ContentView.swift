@@ -10,6 +10,34 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var backgroundReplacer = BackgroundReplacer()
     
+    @State var backgroundType: BackgroundType = .color
+    
+    enum BackgroundType: Int {
+        case color
+        case url
+    }
+    
+    var background: some View {
+        VStack {
+            Picker("", selection: $backgroundType) {
+                Text("Color").tag(BackgroundType.color)
+                Text("URL").tag(BackgroundType.url)
+            }
+            .pickerStyle(.segmented)
+            switch backgroundType {
+            case .color:
+                colors
+            case .url:
+                VideoURLView(loadUrl: backgroundReplacer.setBackgroundUrl)
+            }
+        }
+        .onChange(of: backgroundType) { newValue in
+            if newValue == .color {
+                backgroundReplacer.setBackgroundUrl(nil)
+            }
+        }
+    }
+    
     var colors: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -38,17 +66,14 @@ struct ContentView: View {
     }
     
     var camera: some View {
-        VStack {
-            Text("Camera")
-            Menu {
-                ForEach(backgroundReplacer.devices, id: \.uniqueID) { device in
-                    Button(device.localizedName) {
-                        backgroundReplacer.selectedDeviceId = device.uniqueID
-                    }
+        Menu {
+            ForEach(backgroundReplacer.devices, id: \.uniqueID) { device in
+                Button(device.localizedName) {
+                    backgroundReplacer.selectedDeviceId = device.uniqueID
                 }
-            } label: {
-                Text(backgroundReplacer.selectedDevice?.localizedName ?? "No device selected.")
             }
+        } label: {
+            Text(backgroundReplacer.selectedDevice?.localizedName ?? "No device selected.")
         }
     }
     
@@ -74,25 +99,42 @@ struct ContentView: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            ZStack(alignment: .center) {
-                if let image = backgroundReplacer.ciImage {
-                    MetalView(ciImage: image)
-                } else {
-                    Text("No Image")
-                }
+            if let image = backgroundReplacer.ciImage {
+                MetalView(ciImage: image)
+                    .frame(minWidth: 800)
+            } else {
+                Text("No Image")
             }
             
-            VStack(alignment: .leading, spacing: 12) {
-                camera
+            VStack(alignment: .leading, spacing: 32) {
+                SettingSection(title: "Camera") {
+                    camera
+                }
                 
-                colors
+                SettingSection(title: "Background") {
+                    background
+                }
                 
-                masking
+                SettingSection(title: "Mask") {
+                    masking
+                }
             }
             .frame(width: 200)
             .padding()
         }
         
+    }
+}
+
+struct SettingSection<Content: View>: View {
+    var title: LocalizedStringKey
+    var content: () -> Content
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title).font(.caption).bold()
+            content().padding().background(.regularMaterial)
+        }
     }
 }
 
