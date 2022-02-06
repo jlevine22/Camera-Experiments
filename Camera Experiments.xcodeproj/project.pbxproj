@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		33221E3827A5B96E00DB8D63 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33221E3727A5B96E00DB8D63 /* MetalView.swift */; };
 		3333372127AE0CAF0008B5E0 /* VideoURLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3333372027AE0CAF0008B5E0 /* VideoURLView.swift */; };
+		3333372327AF1BF30008B5E0 /* LocationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3333372227AF1BF30008B5E0 /* LocationSettingsView.swift */; };
 		33675C23279E2163002E767F /* Camera_ExperimentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33675C22279E2163002E767F /* Camera_ExperimentsApp.swift */; };
 		33675C25279E2163002E767F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33675C24279E2163002E767F /* ContentView.swift */; };
 		33675C27279E2164002E767F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33675C26279E2164002E767F /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		33221E3727A5B96E00DB8D63 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
 		3333372027AE0CAF0008B5E0 /* VideoURLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoURLView.swift; sourceTree = "<group>"; };
+		3333372227AF1BF30008B5E0 /* LocationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettingsView.swift; sourceTree = "<group>"; };
 		33675C1F279E2163002E767F /* Camera Experiments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Camera Experiments.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33675C22279E2163002E767F /* Camera_ExperimentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera_ExperimentsApp.swift; sourceTree = "<group>"; };
 		33675C24279E2163002E767F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				33675C28279E2164002E767F /* Preview Content */,
 				33D8EBE727A736CB00D4D2AA /* XPCServiceManager.swift */,
 				3333372027AE0CAF0008B5E0 /* VideoURLView.swift */,
+				3333372227AF1BF30008B5E0 /* LocationSettingsView.swift */,
 			);
 			path = "Camera Experiments";
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				3333372127AE0CAF0008B5E0 /* VideoURLView.swift in Sources */,
 				33D8EBE027A646CA00D4D2AA /* FilterGroup.swift in Sources */,
 				33D8EBEA27A737C100D4D2AA /* CameraExperimentsXPCProtocol.swift in Sources */,
+				3333372327AF1BF30008B5E0 /* LocationSettingsView.swift in Sources */,
 				33675C25279E2163002E767F /* ContentView.swift in Sources */,
 				33675C23279E2163002E767F /* Camera_ExperimentsApp.swift in Sources */,
 				33221E3827A5B96E00DB8D63 /* MetalView.swift in Sources */,

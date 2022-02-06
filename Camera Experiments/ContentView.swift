@@ -19,16 +19,20 @@ struct ContentView: View {
     
     var background: some View {
         VStack {
-            Picker("", selection: $backgroundType) {
-                Text("Color").tag(BackgroundType.color)
-                Text("URL").tag(BackgroundType.url)
-            }
-            .pickerStyle(.segmented)
-            switch backgroundType {
-            case .color:
-                colors
-            case .url:
-                VideoURLView(loadUrl: backgroundReplacer.setBackgroundUrl)
+            Toggle("Enable Background Replacement", isOn: backgroundReplacer.binding(\.isEnabled))
+            
+            if backgroundReplacer.isEnabled {
+                Picker("", selection: $backgroundType) {
+                    Text("Color").tag(BackgroundType.color)
+                    Text("URL").tag(BackgroundType.url)
+                }
+                .pickerStyle(.segmented)
+                switch backgroundType {
+                case .color:
+                    colors
+                case .url:
+                    VideoURLView(loadUrl: backgroundReplacer.setBackgroundUrl)
+                }
             }
         }
         .onChange(of: backgroundType) { newValue in
@@ -66,14 +70,38 @@ struct ContentView: View {
     }
     
     var camera: some View {
-        Menu {
-            ForEach(backgroundReplacer.devices, id: \.uniqueID) { device in
-                Button(device.localizedName) {
-                    backgroundReplacer.selectedDeviceId = device.uniqueID
+        VStack {
+            Menu {
+                ForEach(backgroundReplacer.devices, id: \.uniqueID) { device in
+                    Button(device.localizedName) {
+                        backgroundReplacer.selectedDeviceId = device.uniqueID
+                    }
                 }
+            } label: {
+                Text(backgroundReplacer.selectedDevice?.localizedName ?? "No device selected.")
             }
-        } label: {
-            Text(backgroundReplacer.selectedDevice?.localizedName ?? "No device selected.")
+            
+            HStack {
+                Text("Zoom")
+                Spacer()
+                Text(backgroundReplacer.cameraScale.description)
+            }
+            Slider(value: backgroundReplacer.binding(\.cameraScale), in: 1...1.5)
+                
+            
+            HStack {
+                Text("X Offset")
+                Spacer()
+                Text(backgroundReplacer.cameraXTranslate.description)
+            }
+            Slider(value: backgroundReplacer.binding(\.cameraXTranslate), in: -1...1)
+            
+            HStack {
+                Text("Y Offset")
+                Spacer()
+                Text(backgroundReplacer.cameraYTranslate.description)
+            }
+            Slider(value: backgroundReplacer.binding(\.cameraYTranslate), in: -1...1)
         }
     }
     
@@ -111,6 +139,10 @@ struct ContentView: View {
                     camera
                 }
                 
+                SettingSection(title: "Location") {
+                    LocationSettingsView(backgroundReplacer: backgroundReplacer)
+                }
+                
                 SettingSection(title: "Background") {
                     background
                 }
@@ -119,7 +151,7 @@ struct ContentView: View {
                     masking
                 }
             }
-            .frame(width: 200)
+            .frame(width: 250)
             .padding()
         }
         
