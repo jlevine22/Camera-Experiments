@@ -127,32 +127,37 @@ struct ContentView: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            if let image = backgroundReplacer.ciImage {
-                MetalView(ciImage: image)
-                    .frame(minWidth: 800)
-            } else {
-                Text("No Image")
+            ZStack(alignment: .center) {
+                if let image = backgroundReplacer.ciImage {
+                    MetalView(ciImage: image)
+                } else {
+                    Text("No Image")
+                }
             }
+            .frame(minWidth: 1200, minHeight: 600)
             
-            VStack(alignment: .leading, spacing: 32) {
-                SettingSection(title: "Camera") {
-                    camera
+            ScrollView {
+                VStack(alignment: .leading, spacing: 32) {
+                    SettingSection(title: "Camera") {
+                        camera
+                    }
+                    
+                    SettingSection(title: "Location") {
+                        LocationSettingsView(backgroundReplacer: backgroundReplacer)
+                    }
+                    
+                    SettingSection(title: "Background") {
+                        background
+                    }
+                    
+                    SettingSection(title: "Mask") {
+                        masking
+                    }
                 }
-                
-                SettingSection(title: "Location") {
-                    LocationSettingsView(backgroundReplacer: backgroundReplacer)
-                }
-                
-                SettingSection(title: "Background") {
-                    background
-                }
-                
-                SettingSection(title: "Mask") {
-                    masking
-                }
+                .frame(width: 250)
+                .padding()
             }
-            .frame(width: 250)
-            .padding()
+            .frame(idealHeight: 600)
         }
         
     }
