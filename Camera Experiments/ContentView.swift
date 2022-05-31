@@ -19,7 +19,7 @@ struct ContentView: View {
     
     var background: some View {
         VStack {
-            Toggle("Enable Background Replacement", isOn: backgroundReplacer.binding(\.isEnabled))
+            Toggle("Enable Background Replacement", isOn: $backgroundReplacer.isEnabled)
             
             if backgroundReplacer.isEnabled {
                 Picker("", selection: $backgroundType) {
@@ -49,23 +49,23 @@ struct ContentView: View {
                 Spacer()
                 Text(backgroundReplacer.red.description)
             }
-            Slider(value: backgroundReplacer.binding(\.red), in: 0...1)
+            Slider(value: $backgroundReplacer.red, in: 0...1)
             
             HStack {
                 Text("Green")
                 Spacer()
                 Text(backgroundReplacer.green.description)
             }
-            Slider(value: backgroundReplacer.binding(\.green), in: 0...1)
+            Slider(value: $backgroundReplacer.green, in: 0...1)
             
             HStack {
                 Text("Blue")
                 Spacer()
                 Text(backgroundReplacer.blue.description)
             }
-            Slider(value: backgroundReplacer.binding(\.blue), in: 0...1)
+            Slider(value: $backgroundReplacer.blue, in: 0...1)
             
-            Toggle("Auto Colors", isOn: backgroundReplacer.binding(\.autoColors))
+            Toggle("Auto Colors", isOn: $backgroundReplacer.autoColors)
         }
     }
     
@@ -86,7 +86,7 @@ struct ContentView: View {
                 Spacer()
                 Text(backgroundReplacer.cameraScale.description)
             }
-            Slider(value: backgroundReplacer.binding(\.cameraScale), in: 1...1.5)
+            Slider(value: $backgroundReplacer.cameraScale, in: 1...1.5)
                 
             
             HStack {
@@ -94,14 +94,14 @@ struct ContentView: View {
                 Spacer()
                 Text(backgroundReplacer.cameraXTranslate.description)
             }
-            Slider(value: backgroundReplacer.binding(\.cameraXTranslate), in: -1...1)
+            Slider(value: $backgroundReplacer.cameraXTranslate, in: -1...1)
             
             HStack {
                 Text("Y Offset")
                 Spacer()
                 Text(backgroundReplacer.cameraYTranslate.description)
             }
-            Slider(value: backgroundReplacer.binding(\.cameraYTranslate), in: -1...1)
+            Slider(value: $backgroundReplacer.cameraYTranslate, in: -1...1)
         }
     }
     
@@ -112,16 +112,16 @@ struct ContentView: View {
                 Spacer()
                 Text(backgroundReplacer.blurRadius.description)
             }
-            Slider(value: backgroundReplacer.binding(\.blurRadius), in: 0...50)
+            Slider(value: $backgroundReplacer.blurRadius, in: 0...50)
             
             HStack {
                 Text("Threshold")
                 Spacer()
                 Text(backgroundReplacer.threshold.description)
             }
-            Slider(value: backgroundReplacer.binding(\.threshold), in: 0...1)
+            Slider(value: $backgroundReplacer.threshold, in: 0...1)
             
-            Toggle("Inverted", isOn: backgroundReplacer.binding(\.inverted))
+            Toggle("Inverted", isOn: $backgroundReplacer.inverted)
         }
     }
     

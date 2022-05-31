@@ -12,7 +12,7 @@ struct LocationSettingsView: View {
 
     var body: some View {
         VStack {
-            TextField("City, State", text: backgroundReplacer.binding(\.location), prompt: Text("City, State"))
+            TextField("City, State", text: $backgroundReplacer.location, prompt: Text("City, State"))
         }
     }
 }

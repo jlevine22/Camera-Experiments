@@ -271,14 +271,6 @@ class BackgroundReplacer: NSObject, ObservableObject {
         
         return composite.outputImage!
     }
-    
-    func binding<T>(_ keyPath: ReferenceWritableKeyPath<BackgroundReplacer, T>) -> Binding<T> {
-        Binding {
-            self[keyPath: keyPath]
-        } set: { newValue in
-            self[keyPath: keyPath] = newValue
-        }
-    }
 }
 
 extension BackgroundReplacer: AVCaptureVideoDataOutputSampleBufferDelegate {
